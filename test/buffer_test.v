@@ -2,7 +2,6 @@ module test
 
 import duarteroso.vopenal.al as vopenal
 import duarteroso.vopenalw.al
-import duarteroso.vopenalw.alc
 
 fn test_buffer_creation() {
 	test := fn () {

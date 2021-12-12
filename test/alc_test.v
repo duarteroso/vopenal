@@ -14,7 +14,7 @@ fn test_alc_version() {
 
 fn test_alc() {
 	mut device := alc.new_device()
-	assert device.open(alc.default_device)
+	assert device.open(vopenalc.default_device)
 	defer {
 		assert device.close()
 	}

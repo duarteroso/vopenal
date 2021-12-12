@@ -1,6 +1,6 @@
 module alc
 
-fn C.alcGetCurrentContext() &C.ALCcontext
+import duarteroso.vopenal.alc
 
 // get_current_context returns the current context
 pub fn get_current_context() &Context {

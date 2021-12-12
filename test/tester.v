@@ -1,5 +1,6 @@
 module test
 
+import duarteroso.vopenal.alc as vopenalc
 import duarteroso.vopenalw.alc
 
 // do_test is used to test functionality
@@ -16,7 +17,7 @@ fn dummy_test() {
 
 fn concrete_test(cb fn ()) {
 	mut device := alc.new_device()
-	device.open(alc.default_device)
+	device.open(vopenalc.default_device)
 	defer {
 		device.close()
 	}
