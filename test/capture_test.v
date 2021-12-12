@@ -18,11 +18,11 @@ fn test_capture() {
 	device.stop()
 }
 
-fn test_default_capture() {
+fn test_default_capture() ? {
 	mut device := alc.create_device()
-	device.open(vopenalc.default_device)
+	device.open(vopenalc.default_device) ?
 	_ := device.get_string(vopenalc.alc_capture_default_device_specifier)
-	device.close()
+	device.close() ?
 	//
 	mut capture_device := alc.create_capture_device()
 	assert capture_device.open_default(60, vopenal.al_format_mono16, 8)

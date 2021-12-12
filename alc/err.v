@@ -1,5 +1,7 @@
 module alc
 
+import duarteroso.vopenal.alc as vopenalc
+
 // Err defines a code for a particular error
 pub struct Err {
 pub mut:
@@ -16,7 +18,7 @@ fn create_error(code int) Err {
 // check_error checks and panics on errors
 pub fn check_error(d &Device) {
 	code := C.alcGetError(d.data)
-	if code == alc_no_error {
+	if code == vopenalc.alc_no_error {
 		return
 	}
 	//
@@ -27,11 +29,11 @@ pub fn check_error(d &Device) {
 // code_as_string returns an error code as string
 fn code_as_string(code int) string {
 	return match code {
-		alc_invalid_device { 'ALC_INVALID_DEVICE' }
-		alc_invalid_context { 'ALC_INVALID_CONTEXT' }
-		alc_invalid_enum { 'ALC_INVALID_ENUM' }
-		alc_invalid_value { 'ALC_INVALID_VALUE' }
-		alc_out_of_memory { 'ALC_OUT_OF_MEMORY' }
+		vopenalc.alc_invalid_device { 'ALC_INVALID_DEVICE' }
+		vopenalc.alc_invalid_context { 'ALC_INVALID_CONTEXT' }
+		vopenalc.alc_invalid_enum { 'ALC_INVALID_ENUM' }
+		vopenalc.alc_invalid_value { 'ALC_INVALID_VALUE' }
+		vopenalc.alc_out_of_memory { 'ALC_OUT_OF_MEMORY' }
 		else { 'ALC_NO_ERROR' }
 	}
 }
@@ -39,11 +41,11 @@ fn code_as_string(code int) string {
 // message_from_code returns an error code as a human readable string
 fn message_from_code(code int) string {
 	return match code {
-		alc_invalid_device { 'A bad device was passed to an OpenAL function' }
-		alc_invalid_context { 'A bad context was passed to an OpenAL function' }
-		alc_invalid_enum { 'An unknown enum was passed to an OpenAL function' }
-		alc_invalid_value { 'An invalid value was passed to an OpenAL function' }
-		alc_out_of_memory { 'The requested operation resulted in OpenAL running out of memory' }
+		vopenalc.alc_invalid_device { 'A bad device was passed to an OpenAL function' }
+		vopenalc.alc_invalid_context { 'A bad context was passed to an OpenAL function' }
+		vopenalc.alc_invalid_enum { 'An unknown enum was passed to an OpenAL function' }
+		vopenalc.alc_invalid_value { 'An invalid value was passed to an OpenAL function' }
+		vopenalc.alc_out_of_memory { 'The requested operation resulted in OpenAL running out of memory' }
 		else { 'There is not currently an error ' }
 	}
 }

@@ -12,26 +12,18 @@ fn test_alc_version() {
 	assert sv.stage == semver.Stage.release
 }
 
-fn test_alc() {
+fn test_alc() ? {
 	mut device := alc.create_device()
-	assert device.open(vopenalc.default_device)
-	defer {
-		assert device.close()
-	}
+	device.open(vopenalc.default_device) ?
 	//
 	mut context := alc.create_context_from_device(device)
-	defer {
-		context.destroy()
-	}
 	mut other_context := alc.create_context_from_device(device)
-	defer {
-		other_context.destroy()
-	}
 	//
 	assert other_context.make_current()
 	assert alc.remove_current_context()
 	//
 	assert context.make_current()
+	other_context.destroy()
 	//
 	_ := alc.get_current_context()
 	//
@@ -40,4 +32,7 @@ fn test_alc() {
 	//
 	used_device := context.get_device()
 	assert device == used_device
+	//
+	context.destroy()
+	device.close() ?
 }

@@ -6,7 +6,7 @@ import duarteroso.vopenalw.alc
 // do_test is used to test functionality
 pub fn do_test(cb fn ()) {
 	$if test {
-		concrete_test(cb)
+		concrete_test(cb) or { panic('concrete test failed') }
 	} $else {
 		dummy_test()
 	}
@@ -15,18 +15,15 @@ pub fn do_test(cb fn ()) {
 fn dummy_test() {
 }
 
-fn concrete_test(cb fn ()) {
+fn concrete_test(cb fn ()) ? {
 	mut device := alc.create_device()
-	device.open(vopenalc.default_device)
-	defer {
-		device.close()
-	}
+	device.open(vopenalc.default_device) ?
 	//
 	mut context := alc.create_context_from_device(device)
-	defer {
-		context.destroy()
-	}
 	context.make_current()
 	//
 	cb()
+	//
+	context.destroy()
+	device.close() ?
 }

@@ -1,6 +1,6 @@
 module alc
 
-import duarteroso.vopenal.alc
+import duarteroso.vopenal.alc as vopenalc
 
 // Device wraps functionality around ALCdevice
 pub struct Device {
@@ -23,15 +23,23 @@ pub fn create_device_from_data(data &C.ALCdevice) &Device {
 }
 
 // open audio device by name
-pub fn (mut d Device) open(name string) bool {
+pub fn (mut d Device) open(name string) ? {
 	d.data = C.alcOpenDevice(name.str)
-	return !isnil(d.data)
+	if isnil(d.data) {
+		return error('failed to open ALC device')
+	}
+}
+
+pub fn (mut d Device) open_default() ? {
+	d.open(vopenalc.default_device) ?
 }
 
 // close device
-pub fn (d &Device) close() bool {
+pub fn (d &Device) close() ? {
 	ok := C.alcCloseDevice(d.data)
-	return ok == alc_true
+	if ok == vopenalc.alc_false {
+		return error('failed to close ALC device: contexts or buffer attached')
+	}
 }
 
 // get_data returns data from the device
@@ -43,7 +51,7 @@ pub fn (d &Device) get_data() &C.ALCdevice {
 pub fn (d &Device) is_extension_present(name string) bool {
 	ok := C.alcIsExtensionPresent(d.data, name.str)
 	check_error(d)
-	return ok == alc_true
+	return ok == vopenalc.alc_true
 }
 
 // get_proc_addr returns the process address
@@ -70,7 +78,7 @@ pub fn (d &Device) get_string(param int) string {
 // get_integers returns a device parameters as vector of strings
 pub fn (d &Device) get_integers(param int, size int) []int {
 	values := []int{len: size, init: 0}
-	C.alcGetIntegerv(d.data, param, size, &ALCint(values.data))
+	C.alcGetIntegerv(d.data, param, size, &vopenalc.ALCint(values.data))
 	check_error(d)
 	return values
 }

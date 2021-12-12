@@ -3,18 +3,15 @@ module test
 import duarteroso.vopenal.alc as vopenalc
 import duarteroso.vopenalw.alc
 
-fn test_device() {
+fn test_device() ? {
 	mut device := alc.create_device()
-	assert device.open(vopenalc.default_device)
-	assert device.close()
+	device.open(vopenalc.default_device) ?
+	device.close() ?
 }
 
-fn test_properties() {
+fn test_properties() ? {
 	mut device := alc.create_device()
-	device.open(vopenalc.default_device)
-	defer {
-		device.close()
-	}
+	device.open(vopenalc.default_device) ?
 	//
 	device.get_data()
 	device.is_extension_present('abc')
@@ -29,4 +26,6 @@ fn test_properties() {
 	//
 	device.get_integers(vopenalc.alc_major_version, 1)
 	device.get_integers(vopenalc.alc_minor_version, 1)
+	//
+	device.close() ?
 }

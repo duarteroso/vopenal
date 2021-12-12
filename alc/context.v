@@ -1,6 +1,6 @@
 module alc
 
-import duarteroso.vopenal.alc
+import duarteroso.vopenal.alc as vopenalc
 
 // Context wraps functionality around OpenALC context
 pub struct Context {
@@ -32,7 +32,7 @@ pub fn create_context_from_data(context &C.ALCcontext) &Context {
 pub fn (c &Context) make_current() bool {
 	ok := C.alcMakeContextCurrent(c.data)
 	c.check_error()
-	return ok == alc_true
+	return ok == vopenalc.alc_true
 }
 
 // process context
