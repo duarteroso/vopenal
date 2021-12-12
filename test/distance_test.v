@@ -1,7 +1,8 @@
-module al
+module test
 
 import duarteroso.vopenal.al as vopenal
 import duarteroso.vopenal.alc as vopenalc
+import duarteroso.vopenalw.al
 import duarteroso.vopenalw.alc
 
 fn test_distance_model() {
@@ -15,8 +16,8 @@ fn test_distance_model() {
 			vopenal.DistanceModel.exponent_distance_clamped,
 		]
 		for model in models {
-			distance_model(model)
+			al.distance_model(model)
 		}
 	}
-	alc.do_test(test)
+	do_test(test)
 }

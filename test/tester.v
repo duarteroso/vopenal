@@ -1,4 +1,6 @@
-module alc
+module test
+
+import duarteroso.vopenalw.alc
 
 // do_test is used to test functionality
 pub fn do_test(cb fn ()) {
@@ -13,13 +15,13 @@ fn dummy_test() {
 }
 
 fn concrete_test(cb fn ()) {
-	mut device := new_device()
-	device.open(default_device)
+	mut device := alc.new_device()
+	device.open(alc.default_device)
 	defer {
 		device.close()
 	}
 	//
-	mut context := new_context_from_device(device)
+	mut context := alc.new_context_from_device(device)
 	defer {
 		context.destroy()
 	}

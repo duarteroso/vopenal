@@ -1,11 +1,12 @@
-module al
+module test
 
 import duarteroso.vopenal.alc as vopenalc
+import duarteroso.vopenalw.al
 import duarteroso.vopenalw.alc
 
 fn test_listener_properties() {
 	test := fn () {
-		listener := new_listener()
+		listener := al.new_listener()
 		//
 		value := 123
 		//
@@ -29,5 +30,5 @@ fn test_listener_properties() {
 		orientation = listener.get_orientation()
 	}
 	///
-	alc.do_test(test)
+	do_test(test)
 }

@@ -1,11 +1,12 @@
-module al
+module test
 
 import duarteroso.vopenal.al as vopenal
+import duarteroso.vopenalw.al
 import duarteroso.vopenalw.alc
 
 fn test_buffer_creation() {
 	test := fn () {
-		mut buffer := new_buffer()
+		mut buffer := al.new_buffer()
 		buffer.generate()
 		assert buffer.is_valid()
 		//
@@ -13,29 +14,29 @@ fn test_buffer_creation() {
 		assert buffer.is_valid() == false
 	}
 	//
-	alc.do_test(test)
+	do_test(test)
 }
 
 fn test_batch_buffer_creation() {
 	test := fn () {
-		buffers := new_buffers(3)
+		buffers := al.new_buffers(3)
 		assert buffers.len == 3
 		for buffer in buffers {
 			assert buffer.is_valid()
 		}
 		//
-		release_buffers(buffers)
+		al.release_buffers(buffers)
 		for buffer in buffers {
 			assert buffer.is_valid() == false
 		}
 	}
 	//
-	alc.do_test(test)
+	do_test(test)
 }
 
 fn test_buffer_getters() {
 	test := fn () {
-		mut buffer := new_buffer()
+		mut buffer := al.new_buffer()
 		buffer.generate()
 		defer {
 			buffer.release()
@@ -47,12 +48,12 @@ fn test_buffer_getters() {
 		buffer.get_size()
 	}
 	//
-	alc.do_test(test)
+	do_test(test)
 }
 
 fn test_buffer_attributes() {
 	test := fn () {
-		mut buffer := new_buffer()
+		mut buffer := al.new_buffer()
 		buffer.generate()
 		defer {
 			buffer.release()
@@ -64,12 +65,12 @@ fn test_buffer_attributes() {
 		buffer.get_bufferi(vopenal.al_size)
 	}
 	//
-	alc.do_test(test)
+	do_test(test)
 }
 
 fn test_buffer_data() {
 	test := fn () {
-		mut buffer := new_buffer()
+		mut buffer := al.new_buffer()
 		buffer.generate()
 		defer {
 			buffer.release()
@@ -86,5 +87,5 @@ fn test_buffer_data() {
 			60.0)
 	}
 	//
-	alc.do_test(test)
+	do_test(test)
 }

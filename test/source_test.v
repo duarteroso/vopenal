@@ -1,12 +1,13 @@
-module al
+module test
 
 import duarteroso.vopenal.al as vopenal
 import duarteroso.vopenal.alc as vopenalc
+import duarteroso.vopenalw.al
 import duarteroso.vopenalw.alc
 
 fn test_source_creation() {
 	test := fn () {
-		mut source := new_source()
+		mut source := al.new_source()
 		source.generate()
 		assert source.is_valid()
 		//
@@ -14,29 +15,29 @@ fn test_source_creation() {
 		assert source.is_valid() == false
 	}
 	//
-	alc.do_test(test)
+	do_test(test)
 }
 
 fn test_batch_source_creation() {
 	test := fn () {
-		sources := new_sources(3)
+		sources := al.new_sources(3)
 		assert sources.len == 3
 		for source in sources {
 			assert source.is_valid()
 		}
 		//
-		release_sources(sources)
+		al.release_sources(sources)
 		for source in sources {
 			assert source.is_valid() == false
 		}
 	}
 	//
-	alc.do_test(test)
+	do_test(test)
 }
 
 fn test_source_properties() {
 	test := fn () {
-		mut source := new_source()
+		mut source := al.new_source()
 		source.generate()
 		defer {
 			source.release()
@@ -52,8 +53,8 @@ fn test_source_properties() {
 		source.loop(false)
 		assert source.is_looping() == false
 		//
-		assert source.get_type() == SourceType.undetermined
-		assert source.get_state() == SourceState.initial
+		assert source.get_type() == al.SourceType.undetermined
+		assert source.get_state() == al.SourceState.initial
 		//
 		source.get_offset_time()
 		source.get_offset_sample()
@@ -105,18 +106,18 @@ fn test_source_properties() {
 		assert d == t
 	}
 	//
-	alc.do_test(test)
+	do_test(test)
 }
 
 fn test_source_buffer() {
 	test := fn () {
-		mut buffer := new_buffer()
+		mut buffer := al.new_buffer()
 		buffer.generate()
 		defer {
 			buffer.release()
 		}
 		//
-		mut source := new_source()
+		mut source := al.new_source()
 		source.generate()
 		defer {
 			source.release()
@@ -131,18 +132,18 @@ fn test_source_buffer() {
 		source.get_buffers_processed()
 	}
 	//
-	alc.do_test(test)
+	do_test(test)
 }
 
 fn test_source_playback() {
 	test := fn () {
-		mut buffer := new_buffer()
+		mut buffer := al.new_buffer()
 		buffer.generate()
 		defer {
 			buffer.release()
 		}
 		//
-		mut source := new_source()
+		mut source := al.new_source()
 		source.generate()
 		defer {
 			source.release()
@@ -156,38 +157,38 @@ fn test_source_playback() {
 		source.stop()
 	}
 	//
-	alc.do_test(test)
+	do_test(test)
 }
 
 fn test_multiple_source_playback() {
 	test := fn () {
 		amount := 5
-		mut buffers := new_buffers(amount)
+		mut buffers := al.new_buffers(amount)
 		for mut buffer in buffers {
 			buffer.generate()
 		}
 		defer {
-			release_buffers(buffers)
+			al.release_buffers(buffers)
 		}
 		//
-		mut sources := new_sources(amount)
+		mut sources := al.new_sources(amount)
 		for mut source in sources {
 			source.generate()
 		}
 		defer {
-			release_sources(sources)
+			al.release_sources(sources)
 		}
 		//
 		for i in 0 .. amount {
 			sources[i].link_to_buffer(buffers[i])
 		}
 		//
-		play_sources(sources)
-		pause_sources(sources)
-		play_sources(sources)
-		rewind_sources(sources)
-		stop_sources(sources)
+		al.play_sources(sources)
+		al.pause_sources(sources)
+		al.play_sources(sources)
+		al.rewind_sources(sources)
+		al.stop_sources(sources)
 	}
 	//
-	alc.do_test(test)
+	do_test(test)
 }
