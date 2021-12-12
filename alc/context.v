@@ -9,8 +9,8 @@ mut:
 	device &Device       = &Device(0)
 }
 
-// new_context creates an instance of Context
-pub fn new_context_from_device(d &Device) &Context {
+// create_context creates an instance of Context
+pub fn create_context_from_device(d &Device) &Context {
 	mut c := &Context{}
 	unsafe {
 		c.device = d
@@ -20,12 +20,12 @@ pub fn new_context_from_device(d &Device) &Context {
 	return c
 }
 
-// new_context_from_data creates an instance of Context from data
-pub fn new_context_from_data(context &C.ALCcontext) &Context {
+// create_context_from_data creates an instance of Context from data
+pub fn create_context_from_data(context &C.ALCcontext) &Context {
 	data := C.alcGetContextsDevice(context)
-	device := new_device_from_data(data)
+	device := create_device_from_data(data)
 	//
-	return new_context_from_device(device)
+	return create_context_from_device(device)
 }
 
 // make_current marks a context as current

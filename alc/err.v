@@ -6,8 +6,8 @@ pub mut:
 	code int
 }
 
-// new_error creates an instance of Err
-fn new_error(code int) Err {
+// create_error creates an instance of Err
+fn create_error(code int) Err {
 	return Err{
 		code: code
 	}
@@ -20,7 +20,7 @@ pub fn check_error(d &Device) {
 		return
 	}
 	//
-	err := new_error(code)
+	err := create_error(code)
 	panic(err.str())
 }
 

@@ -6,7 +6,7 @@ import duarteroso.vopenalw.alc
 
 fn test_listener_properties() {
 	test := fn () {
-		listener := al.new_listener()
+		listener := al.create_listener()
 		//
 		value := 123
 		//

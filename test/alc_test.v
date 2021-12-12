@@ -13,17 +13,17 @@ fn test_alc_version() {
 }
 
 fn test_alc() {
-	mut device := alc.new_device()
+	mut device := alc.create_device()
 	assert device.open(vopenalc.default_device)
 	defer {
 		assert device.close()
 	}
 	//
-	mut context := alc.new_context_from_device(device)
+	mut context := alc.create_context_from_device(device)
 	defer {
 		context.destroy()
 	}
-	mut other_context := alc.new_context_from_device(device)
+	mut other_context := alc.create_context_from_device(device)
 	defer {
 		other_context.destroy()
 	}

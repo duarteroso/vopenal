@@ -7,7 +7,7 @@ import duarteroso.vopenalw.alc
 
 fn test_source_creation() {
 	test := fn () {
-		mut source := al.new_source()
+		mut source := al.create_source()
 		source.generate()
 		assert source.is_valid()
 		//
@@ -20,7 +20,7 @@ fn test_source_creation() {
 
 fn test_batch_source_creation() {
 	test := fn () {
-		sources := al.new_sources(3)
+		sources := al.create_sources(3)
 		assert sources.len == 3
 		for source in sources {
 			assert source.is_valid()
@@ -37,7 +37,7 @@ fn test_batch_source_creation() {
 
 fn test_source_properties() {
 	test := fn () {
-		mut source := al.new_source()
+		mut source := al.create_source()
 		source.generate()
 		defer {
 			source.release()
@@ -111,13 +111,13 @@ fn test_source_properties() {
 
 fn test_source_buffer() {
 	test := fn () {
-		mut buffer := al.new_buffer()
+		mut buffer := al.create_buffer()
 		buffer.generate()
 		defer {
 			buffer.release()
 		}
 		//
-		mut source := al.new_source()
+		mut source := al.create_source()
 		source.generate()
 		defer {
 			source.release()
@@ -137,13 +137,13 @@ fn test_source_buffer() {
 
 fn test_source_playback() {
 	test := fn () {
-		mut buffer := al.new_buffer()
+		mut buffer := al.create_buffer()
 		buffer.generate()
 		defer {
 			buffer.release()
 		}
 		//
-		mut source := al.new_source()
+		mut source := al.create_source()
 		source.generate()
 		defer {
 			source.release()
@@ -163,7 +163,7 @@ fn test_source_playback() {
 fn test_multiple_source_playback() {
 	test := fn () {
 		amount := 5
-		mut buffers := al.new_buffers(amount)
+		mut buffers := al.create_buffers(amount)
 		for mut buffer in buffers {
 			buffer.generate()
 		}
@@ -171,7 +171,7 @@ fn test_multiple_source_playback() {
 			al.release_buffers(buffers)
 		}
 		//
-		mut sources := al.new_sources(amount)
+		mut sources := al.create_sources(amount)
 		for mut source in sources {
 			source.generate()
 		}

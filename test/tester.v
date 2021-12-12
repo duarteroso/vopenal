@@ -16,13 +16,13 @@ fn dummy_test() {
 }
 
 fn concrete_test(cb fn ()) {
-	mut device := alc.new_device()
+	mut device := alc.create_device()
 	device.open(vopenalc.default_device)
 	defer {
 		device.close()
 	}
 	//
-	mut context := alc.new_context_from_device(device)
+	mut context := alc.create_context_from_device(device)
 	defer {
 		context.destroy()
 	}

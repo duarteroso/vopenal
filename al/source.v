@@ -24,13 +24,13 @@ pub enum SourceState {
 	undetermined
 }
 
-// new_source returns a new instance of Source
-pub fn new_source() Source {
+// create_source returns a new instance of Source
+pub fn create_source() Source {
 	return Source{}
 }
 
-// new_sources generates multiple instances of Source
-pub fn new_sources(n int) []Source {
+// create_sources generates multiple instances of Source
+pub fn create_sources(n int) []Source {
 	mut values := []u32{len: n}
 	C.alGenSources(n, &vopenal.ALuint(values.data))
 	check_error()

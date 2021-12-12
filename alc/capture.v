@@ -8,8 +8,8 @@ mut:
 	device &Device = &Device(0)
 }
 
-// new_capture_device creates a new instance of CaptureDevice
-pub fn new_capture_device() &CaptureDevice {
+// create_capture_device creates a new instance of CaptureDevice
+pub fn create_capture_device() &CaptureDevice {
 	return &CaptureDevice{}
 }
 
@@ -25,7 +25,7 @@ pub fn (mut c CaptureDevice) open(name string, frequency u32, format int, buffer
 		return false
 	}
 	//
-	c.device = new_device_from_data(data)
+	c.device = create_device_from_data(data)
 	c.check_error()
 	return true
 }

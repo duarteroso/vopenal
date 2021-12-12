@@ -8,8 +8,8 @@ mut:
 	code int
 }
 
-// new_error creates a new Err
-fn new_error(code int) Err {
+// create_error creates a new Err
+fn create_error(code int) Err {
 	return Err{
 		code: code
 	}
@@ -22,7 +22,7 @@ pub fn check_error() {
 		return
 	}
 	//
-	err := new_error(code)
+	err := create_error(code)
 	panic(err.str())
 }
 

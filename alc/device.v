@@ -8,13 +8,13 @@ mut:
 	data &C.ALCdevice = voidptr(0)
 }
 
-// new_device creates an instance of Device
-pub fn new_device() &Device {
-	return new_device_from_data(voidptr(0))
+// create_device creates an instance of Device
+pub fn create_device() &Device {
+	return create_device_from_data(voidptr(0))
 }
 
-// new_device_from_data creates an instance of Device from data
-pub fn new_device_from_data(data &C.ALCdevice) &Device {
+// create_device_from_data creates an instance of Device from data
+pub fn create_device_from_data(data &C.ALCdevice) &Device {
 	unsafe {
 		return &Device{
 			data: data

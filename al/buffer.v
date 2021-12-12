@@ -16,12 +16,12 @@ pub enum BufferFormat {
 	undefined
 }
 
-// new_buffer returns an instance of Buffer
-pub fn new_buffer() Buffer {
+// create_buffer returns an instance of Buffer
+pub fn create_buffer() Buffer {
 	return Buffer{}
 }
 
-pub fn new_buffer_from_id(id u32) ?Buffer {
+pub fn create_buffer_from_id(id u32) ?Buffer {
 	buffer := Buffer{
 		id: id
 	}
@@ -33,8 +33,8 @@ pub fn new_buffer_from_id(id u32) ?Buffer {
 	return buffer
 }
 
-// new_buffers creates multiple instances of Buffer
-pub fn new_buffers(n int) []Buffer {
+// create_buffers creates multiple instances of Buffer
+pub fn create_buffers(n int) []Buffer {
 	mut values := []u32{len: n, init: 0}
 	C.alGenBuffers(n, &vopenal.ALuint(values.data))
 	check_error()

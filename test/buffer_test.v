@@ -5,7 +5,7 @@ import duarteroso.vopenalw.al
 
 fn test_buffer_creation() {
 	test := fn () {
-		mut buffer := al.new_buffer()
+		mut buffer := al.create_buffer()
 		buffer.generate()
 		assert buffer.is_valid()
 		//
@@ -18,7 +18,7 @@ fn test_buffer_creation() {
 
 fn test_batch_buffer_creation() {
 	test := fn () {
-		buffers := al.new_buffers(3)
+		buffers := al.create_buffers(3)
 		assert buffers.len == 3
 		for buffer in buffers {
 			assert buffer.is_valid()
@@ -35,7 +35,7 @@ fn test_batch_buffer_creation() {
 
 fn test_buffer_getters() {
 	test := fn () {
-		mut buffer := al.new_buffer()
+		mut buffer := al.create_buffer()
 		buffer.generate()
 		defer {
 			buffer.release()
@@ -52,7 +52,7 @@ fn test_buffer_getters() {
 
 fn test_buffer_attributes() {
 	test := fn () {
-		mut buffer := al.new_buffer()
+		mut buffer := al.create_buffer()
 		buffer.generate()
 		defer {
 			buffer.release()
@@ -69,7 +69,7 @@ fn test_buffer_attributes() {
 
 fn test_buffer_data() {
 	test := fn () {
-		mut buffer := al.new_buffer()
+		mut buffer := al.create_buffer()
 		buffer.generate()
 		defer {
 			buffer.release()

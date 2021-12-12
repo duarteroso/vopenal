@@ -4,13 +4,13 @@ import duarteroso.vopenal.alc as vopenalc
 import duarteroso.vopenalw.alc
 
 fn test_device() {
-	mut device := alc.new_device()
+	mut device := alc.create_device()
 	assert device.open(vopenalc.default_device)
 	assert device.close()
 }
 
 fn test_properties() {
-	mut device := alc.new_device()
+	mut device := alc.create_device()
 	device.open(vopenalc.default_device)
 	defer {
 		device.close()

@@ -6,8 +6,8 @@ import duarteroso.vopenal.al as vopenal
 pub struct Listener {
 }
 
-// new_listener returns an instance of Listener
-pub fn new_listener() Listener {
+// create_listener returns an instance of Listener
+pub fn create_listener() Listener {
 	return Listener{}
 }
 
