@@ -33,8 +33,8 @@ pub fn create_buffer_from_id(id u32) ?Buffer {
 	return buffer
 }
 
-// create_buffers creates multiple instances of Buffer
-pub fn create_buffers(n int) []Buffer {
+// generate_buffers creates multiple instances of Buffer
+pub fn generate_buffers(n int) []Buffer {
 	mut values := []u32{len: n, init: 0}
 	C.alGenBuffers(n, &vopenal.ALuint(values.data))
 	check_error()

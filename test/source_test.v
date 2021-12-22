@@ -163,7 +163,7 @@ fn test_source_playback() {
 fn test_multiple_source_playback() {
 	test := fn () {
 		amount := 5
-		mut buffers := al.create_buffers(amount)
+		mut buffers := al.generate_buffers(amount)
 		for mut buffer in buffers {
 			buffer.generate()
 		}

@@ -18,7 +18,7 @@ fn test_buffer_creation() {
 
 fn test_batch_buffer_creation() {
 	test := fn () {
-		buffers := al.create_buffers(3)
+		buffers := al.generate_buffers(3)
 		assert buffers.len == 3
 		for buffer in buffers {
 			assert buffer.is_valid()
