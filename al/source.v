@@ -10,7 +10,7 @@ mut:
 
 // SourceType defines the types of a source
 pub enum SourceType {
-	statik
+	fixed
 	streaming
 	undetermined
 }
@@ -113,7 +113,7 @@ pub fn (s &Source) is_looping() bool {
 pub fn (s &Source) get_type() SourceType {
 	value := s.get_sourcei(vopenal.al_source_type)
 	return match value {
-		vopenal.al_source_static { SourceType.statik }
+		vopenal.al_source_static { SourceType.fixed }
 		vopenal.al_source_streaming { SourceType.streaming }
 		vopenal.al_source_undetermined { SourceType.undetermined }
 		else { SourceType.undetermined }
