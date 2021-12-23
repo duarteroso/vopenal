@@ -8,22 +8,6 @@ mut:
 	id u32
 }
 
-// SourceType defines the types of a source
-pub enum SourceType {
-	fixed
-	streaming
-	undetermined
-}
-
-// SourceState defines the states of a source
-pub enum SourceState {
-	initial
-	playing
-	paused
-	stopped
-	undetermined
-}
-
 // create_source returns a new instance of Source
 pub fn create_source() Source {
 	return Source{}
