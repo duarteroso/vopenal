@@ -20,8 +20,8 @@ fn test_source_creation() {
 
 fn test_batch_source_creation() {
 	test := fn () {
-		sources := al.create_sources(3)
-		assert sources.len == 3
+		mut sources := []al.Source{len: 3}
+		al.create_sources(mut sources)
 		for source in sources {
 			assert source.is_valid()
 		}
@@ -163,7 +163,8 @@ fn test_source_playback() {
 fn test_multiple_source_playback() {
 	test := fn () {
 		amount := 5
-		mut buffers := al.generate_buffers(amount)
+		mut buffers := []al.Buffer{len: amount}
+		al.generate_buffers(mut buffers)
 		for mut buffer in buffers {
 			buffer.generate()
 		}
@@ -171,7 +172,8 @@ fn test_multiple_source_playback() {
 			al.release_buffers(buffers)
 		}
 		//
-		mut sources := al.create_sources(amount)
+		mut sources := []al.Source{len: amount}
+		al.create_sources(mut sources)
 		for mut source in sources {
 			source.generate()
 		}

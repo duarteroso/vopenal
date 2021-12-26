@@ -26,19 +26,19 @@ pub fn create_buffer_from_id(id u32) ?Buffer {
 }
 
 // generate_buffers creates multiple instances of Buffer
-pub fn generate_buffers(n int) []Buffer {
+pub fn generate_buffers(mut buffers []Buffer) {
+	assert buffers.len > 0
+	//
+	n := buffers.len
 	mut values := []u32{len: n, init: 0}
 	C.alGenBuffers(n, &vopenal.ALuint(values.data))
 	check_error()
 	//
-	mut buffers := []Buffer{len: n}
 	for i in 0 .. n {
 		buffers[i] = Buffer{
 			id: values[i]
 		}
 	}
-	//
-	return buffers
 }
 
 // release_buffers deletes multiple instances of Buffer
@@ -106,8 +106,8 @@ pub fn (b Buffer) get_size() int {
 }
 
 // set_data sets the data on the buffer
-pub fn (b Buffer) set_data(format int, data voidptr, size int, frequency f32) {
-	C.alBufferData(b.id, format, data, size, frequency)
+pub fn (b Buffer) set_data(format BufferFormat, data voidptr, size int, frequency f32) {
+	C.alBufferData(b.id, vopenal.ALenum(format), data, size, frequency)
 	check_error()
 }
 
