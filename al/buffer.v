@@ -13,16 +13,10 @@ pub fn create_buffer() Buffer {
 	return Buffer{}
 }
 
-pub fn create_buffer_from_id(id u32) ?Buffer {
-	buffer := Buffer{
+pub fn create_buffer_from_id(id u32) Buffer {
+	return Buffer{
 		id: id
 	}
-	//
-	if buffer.is_valid() == false {
-		return error('buffer id $id not valid')
-	}
-	//
-	return buffer
 }
 
 // generate_buffers creates multiple instances of Buffer
