@@ -428,8 +428,20 @@ pub fn (s Source) queue_buffers(b []Buffer) {
 }
 
 // unqueue_buffers removes buffers from the source's queue
-pub fn (s Source) unqueue_buffers(b []Buffer) {
-	values := convert_buffer_array(b)
-	C.alSourceUnqueueBuffers(s.id, values.len, values.data)
-	check_error()
+pub fn (s Source) unqueue_buffers(mut b []Buffer) {
+	for idx in 0 .. b.len {
+		tmp := u32(0)
+		C.alSourceUnqueueBuffers(s.id, 1, &tmp)
+		check_error()
+		//
+		b[idx] = create_buffer_from_id(tmp)
+	}
+}
+
+pub fn (s Source) unqueue_all() {
+	nq := s.get_buffers_queued()
+	mut buffers := []Buffer{len: nq}
+	s.unqueue_buffers(mut buffers)
+	//
+	release_buffers(buffers)
 }
