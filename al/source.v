@@ -77,6 +77,11 @@ pub fn (s Source) link_to_buffer(b &Buffer) {
 	s.sourcei(vopenal.al_buffer, int(b.get_id()))
 }
 
+// unlink_buffer detaches a buffer from the source
+pub fn (s Source) unlink_buffer() {
+	s.sourcei(vopenal.al_buffer, 0)
+}
+
 // is_relative returns true if source position is relative to listener
 pub fn (s Source) is_relative() bool {
 	return s.get_sourcei(vopenal.al_source_relative) == vopenal.al_true
