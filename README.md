@@ -2,17 +2,19 @@
 
 ## Index
 
-* [Description](#description)
-* [Documentation](#documentation)
-* [Install](#install)
-* [Authors](#authors)
-* [License](#license)
-* [Usage](#usage)
-    * [Import](#import)
-    * [Device](#device)
-    * [Context](#context)
-    * [Buffer](#buffer)
-    * [Source](#source)
+- [vOpenAL](#vopenal)
+  - [Index](#index)
+  - [Description](#description)
+  - [Documentation](#documentation)
+  - [Install](#install)
+  - [Authors](#authors)
+  - [License](#license)
+  - [Usage](#usage)
+    - [Import](#import)
+    - [Device](#device)
+    - [Context](#context)
+    - [Buffer](#buffer)
+    - [Source](#source)
 
 #
 
@@ -29,7 +31,7 @@ Please follow the official [OpenAL guide](https://www.openal.org/documentation/O
 @duarteroso
 
 ## License
-[2-clause BSD License](https://opensource.org/licenses/BSD-2-Clause)
+[MIT License](https://opensource.org/licenses/MIT)
 
 ## Usage
 
@@ -38,8 +40,8 @@ Please follow the official [OpenAL guide](https://www.openal.org/documentation/O
 Start using vOpenAL by importing the modules
 
 ```v
-import vopenal.al
-import vopenal.alc
+import duarteroso.vopenal.al
+import duarteroso.vopenal.alc
 ```
 
 ### Device

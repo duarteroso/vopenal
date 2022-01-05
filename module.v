@@ -1,4 +1,4 @@
-module vopenalw
+module vopenal
 
 import v.vmod
 

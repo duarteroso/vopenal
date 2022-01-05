@@ -1,6 +1,6 @@
 module al
 
-import duarteroso.vopenal.al as vopenal
+import duarteroso.openal.al as openal
 
 // enable an OpenAL capability
 pub fn enable(capability int) {
@@ -18,14 +18,14 @@ pub fn disable(capability int) {
 pub fn is_enabled(capability int) bool {
 	enabled := C.alIsEnabled(capability)
 	check_error()
-	return enabled == vopenal.al_true
+	return enabled == openal.al_true
 }
 
 // get_boolean returns the boolean value of a parameter
 pub fn get_boolean(param int) bool {
 	value := C.alGetBoolean(param)
 	check_error()
-	return value == vopenal.al_true
+	return value == openal.al_true
 }
 
 // get_double returns the double value of a parameter
@@ -92,7 +92,7 @@ pub fn get_string(param int) string {
 pub fn is_extension_present(ext string) bool {
 	ok := C.alIsExtensionPresent(ext.str)
 	check_error()
-	return ok == vopenal.al_true
+	return ok == openal.al_true
 }
 
 // get_proc_addr returns the process address

@@ -1,6 +1,6 @@
 module al
 
-import duarteroso.vopenal.al as vopenal
+import duarteroso.openal.al as openal
 
 // Listener wraps functionality around an OpenAL listener
 pub struct Listener {
@@ -13,42 +13,42 @@ pub fn create_listener() Listener {
 
 // get_gain returns the gain of the listener
 pub fn (l &Listener) get_gain() f32 {
-	return l.get_listenerf(vopenal.al_gain)
+	return l.get_listenerf(openal.al_gain)
 }
 
 // set_gain sets the gain of the listener
 pub fn (l &Listener) set_gain(value f32) {
-	l.listenerf(vopenal.al_gain, value)
+	l.listenerf(openal.al_gain, value)
 }
 
 // get_position returns the position of the listener
 pub fn (l &Listener) get_position() (f32, f32, f32) {
-	return l.get_listener3f(vopenal.al_position)
+	return l.get_listener3f(openal.al_position)
 }
 
 // set_position sets the position of the listener
 pub fn (l &Listener) set_position(x f32, y f32, z f32) {
-	l.listener3f(vopenal.al_position, x, y, z)
+	l.listener3f(openal.al_position, x, y, z)
 }
 
 // get_velocity returns the velocity of the listener
 pub fn (l &Listener) get_velocity() (f32, f32, f32) {
-	return l.get_listener3f(vopenal.al_velocity)
+	return l.get_listener3f(openal.al_velocity)
 }
 
 // set_velocity sets the velocity of the listener
 pub fn (l &Listener) set_velocity(x f32, y f32, z f32) {
-	l.listener3f(vopenal.al_velocity, x, y, z)
+	l.listener3f(openal.al_velocity, x, y, z)
 }
 
 // get_orientation returns the orientation of the listener
 pub fn (l &Listener) get_orientation() []f32 {
-	return l.get_listenerfv(vopenal.al_orientation)
+	return l.get_listenerfv(openal.al_orientation)
 }
 
 // set_orientation sets the orientation of the listener
 pub fn (l &Listener) set_orientation(value []f32) {
-	l.listenerfv(vopenal.al_orientation, value)
+	l.listenerfv(openal.al_orientation, value)
 }
 
 // listenerf sets a listener parameter value as float

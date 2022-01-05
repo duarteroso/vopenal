@@ -1,9 +1,9 @@
 Module {
-	name: 'vopenalw'
+	name: 'vopenal'
 	version: '1.0.0'
 	description: 'OpenAL V wrapper'
-	dependencies: [duarteroso.semver, duarteroso.vopenal]
+	dependencies: [duarteroso.semver, duarteroso.openal]
 	license: 'MIT'
-	repo_url: 'https://github.com/duarteroso/vopenalw'
+	repo_url: 'https://github.com/duarteroso/vopenal'
 	author: 'duarteroso'
 }

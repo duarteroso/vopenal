@@ -1,14 +1,14 @@
 module test
 
 import duarteroso.semver
-import duarteroso.vopenal.al as vopenal
-import duarteroso.vopenalw.al
-import duarteroso.vopenalw.alc
+import duarteroso.openal.al as openal
+import duarteroso.vopenal.al
+import duarteroso.vopenal.alc
 
 fn test_al_version() {
 	sv := al.version()
-	assert sv.major == vopenal.al_major_version
-	assert sv.minor == vopenal.al_minor_version
+	assert sv.major == openal.al_major_version
+	assert sv.minor == openal.al_minor_version
 	assert sv.patch == 0
 	assert sv.stage == semver.Stage.release
 }
@@ -16,9 +16,9 @@ fn test_al_version() {
 fn test_type_getter() {
 	test := fn () {
 		values := [
-			vopenal.al_distance_model,
-			vopenal.al_speed_of_sound,
-			vopenal.al_doppler_factor,
+			openal.al_distance_model,
+			openal.al_speed_of_sound,
+			openal.al_doppler_factor,
 		]
 
 		for value in values {
@@ -35,9 +35,9 @@ fn test_type_getter() {
 fn test_type_getter_vector() {
 	test := fn () {
 		values := [
-			vopenal.al_distance_model,
-			vopenal.al_speed_of_sound,
-			vopenal.al_doppler_factor,
+			openal.al_distance_model,
+			openal.al_speed_of_sound,
+			openal.al_doppler_factor,
 		]
 
 		for value in values {
@@ -53,7 +53,7 @@ fn test_type_getter_vector() {
 
 fn test_type_string() {
 	test := fn () {
-		al.get_string(vopenal.al_version)
+		al.get_string(openal.al_version)
 	}
 	//
 	do_test(test)

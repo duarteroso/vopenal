@@ -1,6 +1,6 @@
 module alc
 
-import duarteroso.vopenal.alc as vopenalc
+import duarteroso.openal.alc as openalc
 
 // CaptureDevice wraps functionality around OpenALC capture device
 pub struct CaptureDevice {
@@ -34,7 +34,7 @@ pub fn (mut c CaptureDevice) open(name string, frequency u32, format int, buffer
 pub fn (c &CaptureDevice) close() bool {
 	ok := C.alcCaptureCloseDevice(c.device.data)
 	c.check_error()
-	return ok == vopenalc.alc_true
+	return ok == openalc.alc_true
 }
 
 // get_device returns a reference to the underlying device

@@ -1,11 +1,11 @@
 module test
 
-import duarteroso.vopenal.alc as vopenalc
-import duarteroso.vopenalw.alc
+import duarteroso.openal.alc as openalc
+import duarteroso.vopenal.alc
 
 fn test_context() ? {
 	mut device := alc.create_device()
-	device.open(vopenalc.default_device) ?
+	device.open(openalc.default_device) ?
 	//
 	mut context := alc.create_context_from_device(device)
 	mut other_context := alc.create_context_from_device(device)

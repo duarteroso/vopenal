@@ -1,16 +1,16 @@
 module al
 
-import duarteroso.vopenal.al as vopenal
+import duarteroso.openal.al as openal
 
 // distance_model sets the distance model
-pub fn distance_model(model vopenal.DistanceModel) {
+pub fn distance_model(model openal.DistanceModel) {
 	value := match model {
-		.inverse_distance { vopenal.al_inverse_distance }
-		.inverse_distance_clamped { vopenal.al_inverse_distance_clamped }
-		.linear_distance { vopenal.al_linear_distance }
-		.linear_ditance_clamped { vopenal.al_linear_distance_clamped }
-		.exponent_distance { vopenal.al_exponent_distance }
-		.exponent_distance_clamped { vopenal.al_exponent_distance_clamped }
+		.inverse_distance { openal.al_inverse_distance }
+		.inverse_distance_clamped { openal.al_inverse_distance_clamped }
+		.linear_distance { openal.al_linear_distance }
+		.linear_ditance_clamped { openal.al_linear_distance_clamped }
+		.exponent_distance { openal.al_exponent_distance }
+		.exponent_distance_clamped { openal.al_exponent_distance_clamped }
 	}
 	C.alDistanceModel(value)
 	check_error()

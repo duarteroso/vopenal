@@ -1,6 +1,6 @@
 module al
 
-import duarteroso.vopenal.al as vopenal
+import duarteroso.openal.al as openal
 
 // Source wraps functionality around an OpenAL source
 pub struct Source {
@@ -69,209 +69,209 @@ pub fn (s Source) get_id() u32 {
 pub fn (s Source) is_valid() bool {
 	ok := C.alIsSource(s.id)
 	check_error()
-	return ok == vopenal.al_true
+	return ok == openal.al_true
 }
 
 // link_to_buffer links the buffer to the source
 pub fn (s Source) link_to_buffer(b &Buffer) {
-	s.sourcei(vopenal.al_buffer, int(b.get_id()))
+	s.sourcei(openal.al_buffer, int(b.get_id()))
 }
 
 // unlink_buffer detaches a buffer from the source
 pub fn (s Source) unlink_buffer() {
-	s.sourcei(vopenal.al_buffer, 0)
+	s.sourcei(openal.al_buffer, 0)
 }
 
 // is_relative returns true if source position is relative to listener
 pub fn (s Source) is_relative() bool {
-	return s.get_sourcei(vopenal.al_source_relative) == vopenal.al_true
+	return s.get_sourcei(openal.al_source_relative) == openal.al_true
 }
 
 // loop sets source to a looping state
 pub fn (s Source) loop(loop bool) {
-	value := if loop { vopenal.al_true } else { vopenal.al_false }
-	s.sourcei(vopenal.al_looping, value)
+	value := if loop { openal.al_true } else { openal.al_false }
+	s.sourcei(openal.al_looping, value)
 }
 
 // is_looping returns true if source is set to loop
 pub fn (s Source) is_looping() bool {
-	return s.get_sourcei(vopenal.al_looping) == vopenal.al_true
+	return s.get_sourcei(openal.al_looping) == openal.al_true
 }
 
 // get_type returns a source type
 pub fn (s Source) get_type() SourceType {
-	value := s.get_sourcei(vopenal.al_source_type)
+	value := s.get_sourcei(openal.al_source_type)
 	return match value {
-		vopenal.al_source_static { SourceType.fixed }
-		vopenal.al_source_streaming { SourceType.streaming }
-		vopenal.al_source_undetermined { SourceType.undetermined }
+		openal.al_source_static { SourceType.fixed }
+		openal.al_source_streaming { SourceType.streaming }
+		openal.al_source_undetermined { SourceType.undetermined }
 		else { SourceType.undetermined }
 	}
 }
 
 // get_state returns a source state
 pub fn (s Source) get_state() SourceState {
-	value := s.get_sourcei(vopenal.al_source_state)
+	value := s.get_sourcei(openal.al_source_state)
 	return match value {
-		vopenal.al_initial { SourceState.initial }
-		vopenal.al_playing { SourceState.playing }
-		vopenal.al_paused { SourceState.paused }
-		vopenal.al_stopped { SourceState.stopped }
+		openal.al_initial { SourceState.initial }
+		openal.al_playing { SourceState.playing }
+		openal.al_paused { SourceState.paused }
+		openal.al_stopped { SourceState.stopped }
 		else { SourceState.undetermined }
 	}
 }
 
 // get_offset_time returns the playback position offset in seconds
 pub fn (s Source) get_offset_time() f32 {
-	return s.get_sourcef(vopenal.al_sec_offset)
+	return s.get_sourcef(openal.al_sec_offset)
 }
 
 // get_offset_sample returns the playback position offset in samples
 pub fn (s Source) get_offset_sample() f32 {
-	return s.get_sourcef(vopenal.al_sample_offset)
+	return s.get_sourcef(openal.al_sample_offset)
 }
 
 // get_offset_byte returns the playback position offset in byte
 pub fn (s Source) get_offset_byte() f32 {
-	return s.get_sourcef(vopenal.al_byte_offset)
+	return s.get_sourcef(openal.al_byte_offset)
 }
 
 // get_buffer_id returns the buffer id linked to the source
 pub fn (s Source) get_buffer_id() int {
-	return s.get_sourcei(vopenal.al_buffer)
+	return s.get_sourcei(openal.al_buffer)
 }
 
 // get_buffers_queued returns the number of buffers queued in the source
 pub fn (s Source) get_buffers_queued() int {
-	return s.get_sourcei(vopenal.al_buffers_queued)
+	return s.get_sourcei(openal.al_buffers_queued)
 }
 
 // get_buffers_processed returns the number of buffers in the queue that have been processed
 pub fn (s Source) get_buffers_processed() int {
-	return s.get_sourcei(vopenal.al_buffers_processed)
+	return s.get_sourcei(openal.al_buffers_processed)
 }
 
 // get_pitch retuns the pitch of the source
 pub fn (s Source) get_pitch() f32 {
-	return s.get_sourcef(vopenal.al_pitch)
+	return s.get_sourcef(openal.al_pitch)
 }
 
 // set_pitch sets the pitch of the source
 pub fn (s Source) set_pitch(value f32) {
-	s.sourcef(vopenal.al_pitch, value)
+	s.sourcef(openal.al_pitch, value)
 }
 
 // get_gain returns the gain of the source
 pub fn (s Source) get_gain() f32 {
-	return s.get_sourcef(vopenal.al_gain)
+	return s.get_sourcef(openal.al_gain)
 }
 
 // set_gain sets the gain of the source
 pub fn (s Source) set_gain(value f32) {
-	s.sourcef(vopenal.al_gain, value)
+	s.sourcef(openal.al_gain, value)
 }
 
 // get_gain_bounds returns the min/max gain of the source
 pub fn (s Source) get_gain_bounds() (f32, f32) {
-	min := s.get_sourcef(vopenal.al_min_gain)
-	max := s.get_sourcef(vopenal.al_max_gain)
+	min := s.get_sourcef(openal.al_min_gain)
+	max := s.get_sourcef(openal.al_max_gain)
 	return min, max
 }
 
 // set_gain_bounds sets the min/max gain of the source
 pub fn (s Source) set_gain_bounds(min f32, max f32) {
-	s.sourcef(vopenal.al_min_gain, min)
-	s.sourcef(vopenal.al_max_gain, max)
+	s.sourcef(openal.al_min_gain, min)
+	s.sourcef(openal.al_max_gain, max)
 }
 
 // get_max_distance returns max distance of the source
 pub fn (s Source) get_max_distance() f32 {
-	return s.get_sourcef(vopenal.al_max_distance)
+	return s.get_sourcef(openal.al_max_distance)
 }
 
 // set_max_distance sets the max distance of the source
 pub fn (s Source) set_max_distance(value f32) {
-	s.sourcef(vopenal.al_max_distance, value)
+	s.sourcef(openal.al_max_distance, value)
 }
 
 // get_rolloff returns the rolloff factor of the source
 pub fn (s Source) get_rolloff() f32 {
-	return s.get_sourcef(vopenal.al_rolloff_factor)
+	return s.get_sourcef(openal.al_rolloff_factor)
 }
 
 // set_rolloff sets the rolloff factor of the source
 pub fn (s Source) set_rolloff(value f32) {
-	s.sourcef(vopenal.al_rolloff_factor, value)
+	s.sourcef(openal.al_rolloff_factor, value)
 }
 
 // get_cone_outer_gain returns the cone outer gain of the source
 pub fn (s Source) get_cone_outer_gain() f32 {
-	return s.get_sourcef(vopenal.al_cone_outer_gain)
+	return s.get_sourcef(openal.al_cone_outer_gain)
 }
 
 // set_cone_outer_gain sets the cone outer gain of the source
 pub fn (s Source) set_cone_outer_gain(value f32) {
-	s.sourcef(vopenal.al_cone_outer_gain, value)
+	s.sourcef(openal.al_cone_outer_gain, value)
 }
 
 // get_cone_inner_angle returns the cone inner angle of the source
 pub fn (s Source) get_cone_inner_angle() f32 {
-	return s.get_sourcef(vopenal.al_cone_inner_angle)
+	return s.get_sourcef(openal.al_cone_inner_angle)
 }
 
 // set_cone_inner_angle sets the cone inner angle of the source
 pub fn (s Source) set_cone_inner_angle(value f32) {
-	s.sourcef(vopenal.al_cone_inner_angle, value)
+	s.sourcef(openal.al_cone_inner_angle, value)
 }
 
 // get_cone_outer_angle returns the cone outer angle of the source
 pub fn (s Source) get_cone_outer_angle() f32 {
-	return s.get_sourcef(vopenal.al_cone_outer_angle)
+	return s.get_sourcef(openal.al_cone_outer_angle)
 }
 
 // set_cone_outer_angle sets the cone outer angle of the source
 pub fn (s Source) set_cone_outer_angle(value f32) {
-	s.sourcef(vopenal.al_cone_outer_angle, value)
+	s.sourcef(openal.al_cone_outer_angle, value)
 }
 
 // get_reference_distance Get source reference distance
 pub fn (s Source) get_reference_distance() f32 {
-	return s.get_sourcef(vopenal.al_reference_distance)
+	return s.get_sourcef(openal.al_reference_distance)
 }
 
 // set_reference_distance sets the reference distance of the source
 pub fn (s Source) set_reference_distance(value f32) {
-	s.sourcef(vopenal.al_reference_distance, value)
+	s.sourcef(openal.al_reference_distance, value)
 }
 
 // get_position returns the position of the source
 pub fn (s Source) get_position() (f32, f32, f32) {
-	return s.get_source3f(vopenal.al_position)
+	return s.get_source3f(openal.al_position)
 }
 
 // set_position sets the position of the source
 pub fn (s Source) set_position(v1 f32, v2 f32, v3 f32) {
-	s.source3f(vopenal.al_position, v1, v2, v3)
+	s.source3f(openal.al_position, v1, v2, v3)
 }
 
 // get_velocity returns the velocity of the source
 pub fn (s Source) get_velocity() (f32, f32, f32) {
-	return s.get_source3f(vopenal.al_velocity)
+	return s.get_source3f(openal.al_velocity)
 }
 
 // set_velocity sets the velocity of the source
 pub fn (s Source) set_velocity(v1 f32, v2 f32, v3 f32) {
-	s.source3f(vopenal.al_velocity, v1, v2, v3)
+	s.source3f(openal.al_velocity, v1, v2, v3)
 }
 
 // get_direction returns the direction of the source
 pub fn (s Source) get_direction() (f32, f32, f32) {
-	return s.get_source3f(vopenal.al_direction)
+	return s.get_source3f(openal.al_direction)
 }
 
 // set_direction sets the direction of the source
 pub fn (s Source) set_direction(v1 f32, v2 f32, v3 f32) {
-	s.source3f(vopenal.al_direction, v1, v2, v3)
+	s.source3f(openal.al_direction, v1, v2, v3)
 }
 
 // sourcef sets a source parameter value as float

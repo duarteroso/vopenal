@@ -1,6 +1,6 @@
 module alc
 
-import duarteroso.vopenal.alc as vopenalc
+import duarteroso.openal.alc as openalc
 
 // get_current_context returns the current context
 pub fn get_current_context() &Context {
@@ -11,5 +11,5 @@ pub fn get_current_context() &Context {
 // remove_current_context removes the current context
 pub fn remove_current_context() bool {
 	ok := C.alcMakeContextCurrent(voidptr(0))
-	return ok == vopenalc.alc_true
+	return ok == openalc.alc_true
 }

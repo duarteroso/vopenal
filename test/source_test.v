@@ -1,9 +1,9 @@
 module test
 
-import duarteroso.vopenal.al as vopenal
-import duarteroso.vopenal.alc as vopenalc
-import duarteroso.vopenalw.al
-import duarteroso.vopenalw.alc
+import duarteroso.openal.al as openal
+import duarteroso.openal.alc as openalc
+import duarteroso.vopenal.al
+import duarteroso.vopenal.alc
 
 fn test_source_creation() {
 	test := fn () {
@@ -43,10 +43,10 @@ fn test_source_properties() {
 			source.release()
 		}
 		//
-		source.sourcei(vopenal.al_source_relative, vopenal.al_true)
+		source.sourcei(openal.al_source_relative, openal.al_true)
 		assert source.is_relative() == true
-		source.sourcei(vopenal.al_source_relative, vopenal.al_false)
-		assert source.get_sourcei(vopenal.al_source_relative) == vopenal.al_false
+		source.sourcei(openal.al_source_relative, openal.al_false)
+		assert source.get_sourcei(openal.al_source_relative) == openal.al_false
 		//
 		source.loop(true)
 		assert source.is_looping()
@@ -125,7 +125,7 @@ fn test_source_buffer() {
 		//
 		id := int(buffer.get_id())
 		source.link_to_buffer(buffer)
-		assert source.get_sourcei(vopenal.al_buffer) == id
+		assert source.get_sourcei(openal.al_buffer) == id
 		//
 		source.get_buffer_id()
 		source.get_buffers_queued()

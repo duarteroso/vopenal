@@ -1,6 +1,6 @@
 module al
 
-import duarteroso.vopenal.al as vopenal
+import duarteroso.openal.al as openal
 
 // Buffer wraps the functionality of an OpenAL buffer
 pub struct Buffer {
@@ -25,7 +25,7 @@ pub fn generate_buffers(mut buffers []Buffer) {
 	//
 	n := buffers.len
 	mut values := []u32{len: n, init: 0}
-	C.alGenBuffers(n, &vopenal.ALuint(values.data))
+	C.alGenBuffers(n, &openal.ALuint(values.data))
 	check_error()
 	//
 	for i in 0 .. n {
@@ -38,7 +38,7 @@ pub fn generate_buffers(mut buffers []Buffer) {
 // release_buffers deletes multiple instances of Buffer
 pub fn release_buffers(b []Buffer) {
 	values := convert_buffer_array(b)
-	C.alDeleteBuffers(b.len, &vopenal.ALuint(values.data))
+	C.alDeleteBuffers(b.len, &openal.ALuint(values.data))
 	check_error()
 }
 
@@ -55,7 +55,7 @@ fn convert_buffer_array(b []Buffer) []u32 {
 // generate a buffer
 pub fn (mut b Buffer) generate() {
 	mut values := []u32{len: 1}
-	C.alGenBuffers(values.len, &vopenal.ALuint(values.data))
+	C.alGenBuffers(values.len, &openal.ALuint(values.data))
 	check_error()
 	b.id = values[0]
 }
@@ -63,7 +63,7 @@ pub fn (mut b Buffer) generate() {
 // release buffer
 pub fn (b Buffer) release() {
 	values := [b.id]
-	C.alDeleteBuffers(values.len, &vopenal.ALuint(values.data))
+	C.alDeleteBuffers(values.len, &openal.ALuint(values.data))
 	check_error()
 }
 
@@ -71,7 +71,7 @@ pub fn (b Buffer) release() {
 pub fn (b Buffer) is_valid() bool {
 	ok := C.alIsBuffer(b.id)
 	check_error()
-	return ok == vopenal.al_true
+	return ok == openal.al_true
 }
 
 // get_id returns the id of the buffer
@@ -81,27 +81,27 @@ pub fn (b Buffer) get_id() u32 {
 
 // get_frequency returns the frequency of the buffer
 pub fn (b Buffer) get_frequency() int {
-	return b.get_bufferi(vopenal.al_frequency)
+	return b.get_bufferi(openal.al_frequency)
 }
 
 // get_bits returns the bits of the buffer
 pub fn (b Buffer) get_bits() int {
-	return b.get_bufferi(vopenal.al_bits)
+	return b.get_bufferi(openal.al_bits)
 }
 
 // get_channels returns the number channels of the buffer
 pub fn (b Buffer) get_channels() int {
-	return b.get_bufferi(vopenal.al_channels)
+	return b.get_bufferi(openal.al_channels)
 }
 
 // get_size returns the size of the buffer
 pub fn (b Buffer) get_size() int {
-	return b.get_bufferi(vopenal.al_size)
+	return b.get_bufferi(openal.al_size)
 }
 
 // set_data sets the data on the buffer
 pub fn (b Buffer) set_data(format BufferFormat, data voidptr, size int, frequency f32) {
-	C.alBufferData(b.id, vopenal.ALenum(format), data, size, frequency)
+	C.alBufferData(b.id, openal.ALenum(format), data, size, frequency)
 	check_error()
 }
 

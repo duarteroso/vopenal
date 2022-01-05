@@ -1,7 +1,7 @@
 module test
 
-import duarteroso.vopenal.al as vopenal
-import duarteroso.vopenalw.al
+import duarteroso.openal.al as openal
+import duarteroso.vopenal.al
 
 fn test_buffer_creation() {
 	test := fn () {
@@ -58,10 +58,10 @@ fn test_buffer_attributes() {
 			buffer.release()
 		}
 		//
-		buffer.get_bufferi(vopenal.al_frequency)
-		buffer.get_bufferi(vopenal.al_bits)
-		buffer.get_bufferi(vopenal.al_channels)
-		buffer.get_bufferi(vopenal.al_size)
+		buffer.get_bufferi(openal.al_frequency)
+		buffer.get_bufferi(openal.al_bits)
+		buffer.get_bufferi(openal.al_channels)
+		buffer.get_bufferi(openal.al_size)
 	}
 	//
 	do_test(test)
