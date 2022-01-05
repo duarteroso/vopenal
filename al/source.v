@@ -414,7 +414,13 @@ pub fn rewind_sources(s []Source) {
 	check_error()
 }
 
-// queue_buffers adds buffer into the source's queue
+// queue_buffer adds a buffer into the source's queue
+pub fn (s Source) queue_buffer(b Buffer) {
+	C.alSourceQueueBuffers(s.id, 1, &b.id)
+	check_error()
+}
+
+// queue_buffers adds buffers into the source's queue
 pub fn (s Source) queue_buffers(b []Buffer) {
 	values := convert_buffer_array(b)
 	C.alSourceQueueBuffers(s.id, values.len, values.data)
