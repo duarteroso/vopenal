@@ -16,14 +16,14 @@ fn create_error(code int) Err {
 }
 
 // check_error checks and panics on error
-pub fn check_error() {
+pub fn check_error() ? {
 	code := C.alGetError()
 	if code == openal.al_no_error {
 		return
 	}
 	//
 	err := create_error(code)
-	panic(err.str())
+	return error(err.str())
 }
 
 // code_as_string returns an error code as string

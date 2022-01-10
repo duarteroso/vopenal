@@ -16,14 +16,14 @@ fn create_error(code int) Err {
 }
 
 // check_error checks and panics on errors
-pub fn check_error(d &Device) {
+pub fn check_error(d &Device) ? {
 	code := C.alcGetError(d.data)
 	if code == openalc.alc_no_error {
 		return
 	}
 	//
 	err := create_error(code)
-	panic(err.str())
+	return error(err.str())
 }
 
 // code_as_string returns an error code as string

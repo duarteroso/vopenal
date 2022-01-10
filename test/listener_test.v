@@ -1,24 +1,23 @@
 module test
 
-import duarteroso.openal.alc as openalc
 import duarteroso.vopenal.al
-import duarteroso.vopenal.alc
 
 fn test_listener_properties() {
-	test := fn () {
+	test := fn () ? {
 		listener := al.create_listener()
 		//
 		value := 123
 		//
-		listener.set_gain(value)
-		assert listener.get_gain() == value
+		listener.set_gain(value) ?
+		gain := listener.get_gain() ?
+		assert gain == value
 		//
-		listener.set_position(value, value, value)
-		px, py, pz := listener.get_position()
+		listener.set_position(value, value, value) ?
+		px, py, pz := listener.get_position() ?
 		assert px == value && py == value && pz == value
 		//
-		listener.set_velocity(value, value, value)
-		vx, vy, vz := listener.get_velocity()
+		listener.set_velocity(value, value, value) ?
+		vx, vy, vz := listener.get_velocity() ?
 		assert vx == value && vy == value && vz == value
 		//
 		look := [f32(1), 2, 3]
@@ -26,8 +25,8 @@ fn test_listener_properties() {
 		mut orientation := []f32{len: 0}
 		orientation << look
 		orientation << up
-		listener.set_orientation(orientation)
-		orientation = listener.get_orientation()
+		listener.set_orientation(orientation) ?
+		orientation = listener.get_orientation() ?
 	}
 	///
 	do_test(test)
