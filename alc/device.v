@@ -5,7 +5,7 @@ import duarteroso.openal.alc as openalc
 // Device wraps functionality around ALCdevice
 pub struct Device {
 mut:
-	data &C.ALCdevice = voidptr(0)
+	data &C.ALCdevice = &C.ALCdevice(0)
 }
 
 // create_device creates an instance of Device

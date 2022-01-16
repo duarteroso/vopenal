@@ -5,7 +5,7 @@ import duarteroso.openal.alc as openalc
 // Context wraps functionality around OpenALC context
 pub struct Context {
 mut:
-	data   &C.ALCcontext = voidptr(0)
+	data   &C.ALCcontext = &C.ALCcontext(0)
 	device &Device       = &Device(0)
 }
 
